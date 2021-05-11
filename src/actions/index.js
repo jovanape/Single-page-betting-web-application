@@ -1,3 +1,4 @@
-export const addBet = () => ({
-  type: "ADD_BET"
+export const addBet = (newBet) => ({
+  type: "ADD_BET",
+  payload: newBet
 });
