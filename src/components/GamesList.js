@@ -6,7 +6,7 @@ import GameItem from './GameItem';
 const mapStatetoProps = (state, ownProps) =>
 {
   return {
-    bets: state.bets,
+    games: state.games,
     my_bets: state.my_bets
   };
 };
@@ -21,10 +21,10 @@ class GamesList extends Component {
                 <div className="head-row"> 2 </div>
             </div>
       {
-      this.props.bets.map((bet) => {
+      this.props.games.map((game) => {
 
         //return <GameItem bet = {bet}/>
-        return <GameItem key = {bet.id} gameId = {bet.id} bet = {bet}/>
+        return <GameItem key = {game.id} gameId = {game.id} game = {game}/>
 
       })
       }

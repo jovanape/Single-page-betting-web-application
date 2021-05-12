@@ -29,5 +29,13 @@
 }
 
 .first-row {
-  display: flex !important;
+  display: flex;
+}
+
+.changeColor {
+  background-color: green;
+}
+
+.div-cell {
+  cursor: pointer;
 }

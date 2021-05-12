@@ -1,5 +1,5 @@
 const Feed = {
-  "bets": [
+  "games": [
     {
       "id": 1,
       "home_team": "Real Madrid",

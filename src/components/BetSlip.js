@@ -6,7 +6,7 @@ import './BetSlip.css';
 const mapStatetoProps = (state, props) => {
   return {
     betSlip: state.betslip,
-    bets: state.bets
+    games: state.games
   };
 };
 
@@ -36,12 +36,13 @@ class BetSlip extends Component {
 
   //extract and return gamename (hometeam - awayteam) and coefficient from bets list
   getGameName = (betId, betType) => {
-    return this.props.bets.find(x => x.id === betId).home_team + ' - ' +
-           this.props.bets.find(x => x.id === betId).home_team;
+    let currentGame = this.props.games.find(x => x.id === betId);
+    return currentGame.home_team + ' - ' + currentGame.away_team;
   }
-  
+  // Unhandled Rejection (TypeError): currentGame.bets.find is not a function
   getCoeficient = (betId, betType) => {
-
+    let currentGame = this.props.games.find(x => x.id === betId);
+    return currentGame.bets[betType]["odd"];
   }
 
 
@@ -59,13 +60,13 @@ class BetSlip extends Component {
         {this.props.betSlip.map((aBet) => (
         <div className="container" key={"betslip" + aBet.id}>
           <div>
-            <p className="heading-line">Chelsea</p> {/*abet.bet 1,x,2*/}
-            <p className = "description">{this.getGameName()}</p>
+            <p className="heading-line">{aBet.bet}</p> {/*abet.bet 1,x,2*/}
+            <p className = "description">{this.getGameName(aBet.id, aBet.bet)}</p>
             <p className = "description">{aBet.home_team}</p> {/*home away team*/}
           </div>
           <div className="right-container">
             <div className="remove" onClick={() => {this.removeBet(aBet.id)}}>x</div>
-            <div className="coef-right">1.75</div> {/*koef*/}
+            <div className="coef-right">{this.getCoeficient(aBet.id, aBet.bet)}</div> {/*koef*/}
           </div>
         </div>
         ))}
