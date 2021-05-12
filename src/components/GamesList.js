@@ -24,7 +24,7 @@ class GamesList extends Component {
       this.props.bets.map((bet) => {
 
         //return <GameItem bet = {bet}/>
-        return <GameItem key = {bet.id} bet = {bet}/>
+        return <GameItem key = {bet.id} gameId = {bet.id} bet = {bet}/>
 
       })
       }

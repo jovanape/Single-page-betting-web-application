@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { removeBet } from '../actions';
 import './BetSlip.css';
 
 const mapStatetoProps = (state, props) => {
   return {
-      betSlip: state.BetSlip
+    betSlip: state.betslip,
+    bets: state.bets
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeBet: (betId) => {dispatch(removeBet(betId))}
+  };
+};
 
 class BetSlip extends Component {
 
@@ -23,10 +30,25 @@ class BetSlip extends Component {
     this.setState({minimized: isMinimized})
   }
 
+  removeBet = (betId) => {
+    this.props.removeBet(betId);
+  }
+
+  //extract and return gamename (hometeam - awayteam) and coefficient from bets list
+  getGameName = (betId, betType) => {
+    return this.props.bets.find(x => x.id === betId).home_team + ' - ' +
+           this.props.bets.find(x => x.id === betId).home_team;
+  }
+  
+  getCoeficient = (betId, betType) => {
+
+  }
+
+
   render () {
     return <>
 
-      <div className = "outher">
+      <div className="outher">
 
       { !this.state.minimized && <>
         <div className="head">
@@ -34,31 +56,19 @@ class BetSlip extends Component {
           <span onClick={() => {this.minimize(true)}}>_</span>
         </div>
 
-        {this.props.betSlip.map((aBet) => {
-        return <div className="container">
+        {this.props.betSlip.map((aBet) => (
+        <div className="container" key={"betslip" + aBet.id}>
           <div>
-            <p className="heading-line">Chelsea</p>
-            <p className = "description">Bottom line</p>
-            <p className = "description">Chelsea: Real Madrid</p>
+            <p className="heading-line">Chelsea</p> {/*abet.bet 1,x,2*/}
+            <p className = "description">{this.getGameName()}</p>
+            <p className = "description">{aBet.home_team}</p> {/*home away team*/}
           </div>
           <div className="right-container">
-            <div className="remove">x</div>
-            <div className="coef-right">1.75</div>
+            <div className="remove" onClick={() => {this.removeBet(aBet.id)}}>x</div>
+            <div className="coef-right">1.75</div> {/*koef*/}
           </div>
         </div>
-         })}
-
-        <div className="container">
-          <div>
-            <p className = "heading-line">draw</p>
-            <p className = "description">Bottom line</p>
-            <p className = "description">Arsenal: Villarreal</p>
-          </div>
-          <div className="right-container">
-            <div className="remove">x</div>
-            <div className="coef-right">2.30</div>
-          </div>
-        </div>
+        ))}
         <div className="container">                
           {/*<form action="/action_page.php">*/}
           <label htmlFor="fname">bet amount:</label>
@@ -71,15 +81,15 @@ class BetSlip extends Component {
         </div>
 
         </>
-  }
+        }
         { this.state.minimized && <div className="bottom">
-          <span>Sports Betting</span>
-          <span>Live</span>
-          <span>Promos</span>
-          <span>Betting slip</span>
-          <span>My bets</span>
-          <span onClick={() => {this.minimize(false)}}>_</span>
-        </div>
+            <span>Sports Betting</span>
+            <span>Live</span>
+            <span>Promos</span>
+            <span>Betting slip</span>
+            <span>My bets</span>
+            <span onClick={() => {this.minimize(false)}}>_</span>
+          </div>
         }
       </div>
 
@@ -89,4 +99,4 @@ class BetSlip extends Component {
 
 }
 
-export default connect (null, null)(BetSlip);
+export default connect (mapStatetoProps, mapDispatchToProps)(BetSlip);

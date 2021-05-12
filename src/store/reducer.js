@@ -33,6 +33,10 @@ const aRootReducer = (aState = aInitialState, aAction) => {
     ]);
       break;
 
+      case "REMOVE_BET":
+        console.log(aAction.betId);
+    
+        break;
     default:
       break;
   }

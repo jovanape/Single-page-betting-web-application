@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {addBet} from './../actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,8 +16,8 @@ class GameItem extends Component {
 
   addBet = (sBet) => {
     const newBet = {
-    id: this.props.key,
-    bet: sBet
+      id: this.props.gameId,
+      bet: sBet
     };
     this.props.addBet(newBet);
   }
@@ -27,7 +28,7 @@ class GameItem extends Component {
         <div className="first-col">{this.props.bet.home_team + "--" + this.props.bet.away_team}</div>
         <div className="div-cell" onClick = {() => {this.addBet("1")}}>  {this.props.bet.bets["1"].odd} </div>
         {/*<div className="div-cell" onClick = {this.props.addbet}> 2.15 </div>*/}
-        <div className="div-cell" onClick = {() => {this.addBet("x")}}> {this.props.bet.bets["X"].odd} </div>
+        <div className="div-cell" onClick = {() => {this.addBet("X")}}> {this.props.bet.bets["X"].odd} </div>
         <div className="div-cell" onClick = {() => {this.addBet("2")}}>  {this.props.bet.bets["2"].odd} </div>
 
 
