@@ -37,15 +37,14 @@ class GameItem extends Component {
     };
     this.props.addBet(newBet);
   }
-// fja koja vraca klasu ili prazan string
-// proslediti koji je tacan bet
-// pozvati je isto kao addBet
-// prvo proveriti da li je trenutni item vec u storu
-// my_bets: state.betslip
-// proci kroz betslip listu objekata
-// uporediti id svakog tog objekta sa id iz games
-// this.props.game.id
-
+  // fja koja vraca klasu ili prazan string
+  // proslediti koji je tacan bet
+  // pozvati je isto kao addBet
+  // prvo proveriti da li je trenutni item vec u storu
+  // my_bets: state.betslip
+  // proci kroz betslip listu objekata
+  // uporediti id svakog tog objekta sa id iz games
+  // this.props.game.id
 
 getClass = (elemId) => {
   for (let bet of this.props.my_bets) {
@@ -56,23 +55,17 @@ getClass = (elemId) => {
   return "";
 }
 
-
-
   render () {
     return <>
       <div className="div-table-row">
         <div className="first-col">{this.props.game.home_team + "--" + this.props.game.away_team}</div>
-        <div className={"div-cell" + " " + this.getClass("1")} id = "1" onClick = {() => {this.addBet("1")}}>  {this.props.game.bets["1"].odd} </div>
+        <div className={"div-cell" + " " + this.getClass("1")} id="1" onClick = {() => {this.addBet("1")}}> {this.props.game.bets["1"].odd} </div>
         {/*<div className="div-cell" onClick = {this.props.addbet}> 2.15 </div>*/}
-        <div className={"div-cell" + " " + this.getClass("X")} id = "x" onClick = {() => {this.addBet("X")}}> {this.props.game.bets["X"].odd} </div>
-        <div className={"div-cell" + " " + this.getClass("2")} id = "2" onClick = {() => {this.addBet("2")}}>  {this.props.game.bets["2"].odd} </div>
-
-
+        <div className={"div-cell" + " " + this.getClass("X")} id="x" onClick = {() => {this.addBet("X")}}> {this.props.game.bets["X"].odd} </div>
+        <div className={"div-cell" + " " + this.getClass("2")} id="2" onClick = {() => {this.addBet("2")}}> {this.props.game.bets["2"].odd} </div>
       </div>
-      </>;
-
+    </>;
   }
-
 }
 
 export default connect (mapStatetoProps, mapDispatchToProps)(GameItem);

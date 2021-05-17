@@ -12,7 +12,8 @@ class App extends Component {
         <GamesList/>
         <BetSlip/>
       </>
-    )}
+    )
+  }
 }
 
 export default App;

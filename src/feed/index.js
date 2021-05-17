@@ -105,7 +105,7 @@ const Feed = {
       "league": 5,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "X": {
