@@ -1,13 +1,13 @@
 body {
     margin: 0 auto;
-    max-width: 280px;
+    /*max-width: 280px;*/
     font-family: Arial, Helvetica;
   }
 
 .outher {
+  position:fixed;
   bottom:0;
   right:0;
-  position:fixed;
 }
   .container {
     border: 1px solid lightgray;
@@ -56,14 +56,18 @@ body {
   }
   
   p {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
   }
   
   .heading-line {
-  font-weight: bold;
+    font-weight: bold;
   }
   
   .description {
-  color: gray;
+    color: gray;
+  }
+
+  #possible_win_result {
+    font-weight: bold;
   }

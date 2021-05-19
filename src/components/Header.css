@@ -1,0 +1,44 @@
+.header-line {
+  background-color:	#181716;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  margin-bottom: 100px;
+  height: 40px;
+  position: sticky;
+}
+
+.submited-betslips-text {
+  padding: 5px;
+  text-align: right;
+  border: 1px solid white;
+  position: absolute;
+  right: 0;
+}
+
+.details-button {
+  width: 100px;
+  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.details-title {
+  font-size: medium;
+  font-weight: bold;
+  padding-bottom: 5px;
+  color: darkslategray;
+}
+
+/* Popup */
+.outher-popup
+{
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background: white;
+}

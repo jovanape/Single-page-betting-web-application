@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { removeBet } from '../actions';
+import { removeAll, removeBet } from '../actions';
 import {submitBetSlip} from './../actions'
 
 import './BetSlip.css';
@@ -15,7 +15,8 @@ const mapStatetoProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeBet: (betId) => {dispatch(removeBet(betId))},
-    submitBetSlip: (amount, total_coefficient) => {dispatch(submitBetSlip(amount, total_coefficient))}    
+    submitBetSlip: (amount, total_coefficient) => {dispatch(submitBetSlip(amount, total_coefficient))},
+    removeAll: () => {dispatch(removeAll())}    
   };
 };
 
@@ -29,7 +30,7 @@ class BetSlip extends Component {
 
     this.state = {
       minimized: false,
-      totalpossiblewin: 0,
+      amount: 0,
       totalCoeficient: 1
     };
 
@@ -46,6 +47,7 @@ class BetSlip extends Component {
   //extract and return gamename (hometeam - awayteam) and coefficient from bets list
   getGameName = (betId, betType) => {
     let currentGame = this.props.games.find(x => x.id === betId);
+    console.log(currentGame.home_team);
     return currentGame.home_team + ' - ' + currentGame.away_team;
   }
   // Unhandled Rejection (TypeError): currentGame.bets.find is not a function
@@ -55,11 +57,49 @@ class BetSlip extends Component {
   }
 
   /*
-  `  imas listu sta je u betslipu, koja utakmica i koji bet si odigrao,
-    i imas listu detalja svih utakmica u ponudi..
-    kako da za svaku stavku u listi betslip izvuces to sto ti treba
-    iz liste detalja svih utakmica`
+    imamo listu sta je u betslipu, koja utakmica i koji bet je odigran,
+    i imamo listu detalja svih utakmica u ponudi
+    kako da za svaku stavku u listi betslip izvucemo to sto treba
+    iz liste detalja svih utakmica
   */
+
+
+    /*
+      1. formatirati sve
+        - redosled
+        - bet amount: vrednost
+        - isOpen u toggle
+      
+      2. pop up + close up button - position: absolute
+
+      3. betslips dugme - sa desne strne svaki treba da ima details
+      (lista svih igara jednog submitted betslipa)
+
+      nestaje sve iz popupa, detaljno se prikazuje samo za jedan betslip
+      i ima back button za povratak na listu
+
+      lokalni state - da li je otvorena lista ili nije
+
+      mogu da budu dve komponente: list item i detail (ali ne mora)
+
+      moramo da znamo na koji od betslipova smo kliknuli
+      1. u submitted_betslips dodati properti id (generissati ga)
+      2. proslediti submitted_betslip trenutni - ceo taj objekat prosledimo f-ji
+          - ceo submitted_betslip sacuvati u lokalni state (ako ga ima ili ako ga nema)
+          - kada je detail view ukljucen u tom trenutku citamo
+          iz submitted_betslip kojeg smo zapamtili u lok state
+
+          current_betslip_details
+          kad se klikne na details current_betslip_details postaviti na vrednosti betslipa
+          kad se klikne na back current_betslip_details postaviti na null
+
+          this.state.current_betslip_details && detaljni prikaz
+          ako nije onda list prikaz
+
+      state -> this.state.
+      props -> this.props.
+    */
+
   calculateTotalCoeficient = () => {
     let totalCoeficient = 1;
     for (let bet of this.props.betSlip) {
@@ -71,16 +111,11 @@ class BetSlip extends Component {
         }
       }
     }
-    this.setState({totalCoeficient: totalCoeficient});
+    this.setState({total_coefficient: totalCoeficient});
   }
 
-  calculateTotalPossibleWin = () => {
-    //let amount = document.getElementById("bet_amount").value; // link procitati
-    let amount = this.myRef.current.value;
-    // bet_amount multiplied by total coefficient
-    // document.getElementById("possible_win_result").innerHTML = amount * this.calculateTotalCoeficient();
-    const possibleWin =  amount * this.state.totalCoeficient;
-    this.setState({totalpossiblewin: possibleWin});
+  saveAmount = () => {
+    this.setState({amount: this.myRef.current.value});
   }
 
   // poziva se automatski
@@ -102,9 +137,18 @@ class BetSlip extends Component {
 
   }
 
-  submitBetSlip = (amount, total_coefficient) => {
-    this.props.submitBetSlip(amount, total_coefficient);
+  submitBetSlipClick = () => {
+    this.props.submitBetSlip(this.state.amount, this.state.total_coefficient);
   }
+
+  removeAllClick = () => {
+    this.props.removeAll();
+  }
+// BetSlip._this.removeAllClick
+  /*
+  remove_all brise sve parove iz liste
+  
+  */
 
   render () {
     return <>
@@ -131,23 +175,28 @@ class BetSlip extends Component {
           </div>
         </div>
         ))}
+        <div className="container">
+          <input type="submit" value="Remove all" onClick={this.removeAllClick}/> {/**/}
+        </div>
         <div className="container">                
           {/*<form action="/action_page.php">*/}
           <label htmlFor="bet_amount">bet amount:</label>
-          <input type="text" name="bet_amount" id="bet_amount" ref={this.myRef} onChange={this.calculateTotalPossibleWin} />
-          <input type="submit" value="Submit" onClick={() => {this.submitBetSlip()}}/> {/**/}
+          <input type="text" name="bet_amount" id="bet_amount" ref={this.myRef} onChange={this.saveAmount} />
+          <input type="submit" value="Submit" onClick={this.submitBetSlipClick}/> {/**/}
           {/*</form>*/}
         </div>
-        <div id="possible_win_result"> {this.state.totalpossiblewin} </div>
         <div className="container">
-          <span>total coeff:</span><span>{this.state.totalCoeficient}</span>
+          <span>total coeff: </span><span>{this.state.totalCoeficient}</span>
         </div> {/*this.calculateTotalCoeficient() mora da postoji return u toj funkciji*/}
         <div className="container"> {/*setuje se state ali mora on da se isprinta*/}
-          total winning
+          <span id="possible_win_result">total winning: </span><span>{this.state.amount*this.state.totalCoeficient}</span>
         </div>
 
         </>
         }
+
+
+        
         { this.state.minimized && <div className="bottom">
             <span>Sports Betting</span>
             <span>Live</span>

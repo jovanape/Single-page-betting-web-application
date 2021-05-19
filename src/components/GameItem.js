@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStatetoProps = (state, ownProps) =>
 {
   return {
-    my_bets: state.betslip
+    betslip: state.betslip
   };
 };
 
@@ -25,7 +25,7 @@ class GameItem extends Component {
 
   addBet = (sBet) => {
     
-    for (let obj of this.props.my_bets) {
+    for (let obj of this.props.betslip) {
       if (obj.id === this.props.gameId) {
         return
       } 
@@ -41,13 +41,13 @@ class GameItem extends Component {
   // proslediti koji je tacan bet
   // pozvati je isto kao addBet
   // prvo proveriti da li je trenutni item vec u storu
-  // my_bets: state.betslip
+  // betslip: state.betslip
   // proci kroz betslip listu objekata
   // uporediti id svakog tog objekta sa id iz games
   // this.props.game.id
 
 getClass = (elemId) => {
-  for (let bet of this.props.my_bets) {
+  for (let bet of this.props.betslip) {
     if ((bet.id === this.props.game.id) && (elemId === bet.bet)) {
       return "changeColor";
     }

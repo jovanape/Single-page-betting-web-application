@@ -6,8 +6,7 @@ import GameItem from './GameItem';
 const mapStatetoProps = (state, ownProps) =>
 {
   return {
-    games: state.games,
-    my_bets: state.my_bets
+    games: state.games
   };
 };
 

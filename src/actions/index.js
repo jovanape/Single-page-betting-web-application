@@ -18,3 +18,9 @@ export const submitBetSlip = (amount, total_coefficient) => ({
   amount: amount,
   total_coefficient: total_coefficient
 });
+
+
+export const removeAll = () => ({
+  type: "REMOVE_BETSLIP"
+});
+
