@@ -34,7 +34,7 @@ class BetSlipInfo extends React.Component {
     return ( <>
       <div className="container" key={"betslipInfo" + this.props.aBet.id}>
         <div>
-          <p className="heading-line">{this.props.aBet.bet}</p> {/*abet.bet 1,x,2*/}
+          <p className="heading-line">{this.props.aBet.bet}</p> {/*bet: 1, x, 2*/}
           <p className="description">{this.getGameName(this.props.aBet.id, this.props.aBet.bet)}</p>
           <p className="description">{this.props.aBet.home_team}</p> {/*home away team*/}
         </div>

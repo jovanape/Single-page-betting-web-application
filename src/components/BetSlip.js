@@ -44,16 +44,17 @@ class BetSlip extends Component {
     this.setState({amount: this.myRef.current.value});
   }
 
-  // naredna funkcija poziva se automatski
-  // treba samo da se implementira u komponenti
-  // componentDidUpdate(prevProps, prevState, snapshot);
-  // prevProps = prethodne vrednosti this.props-a
-  // prevState = prethodna vrednost statea
-
-  // this.props i this.state su novi trenutni
-  // svaki put kada se promeni state ili property pozvace se ova f-ja
-  // nama treba samo kada se promenio betslip, tj. duzina liste betslip koja sadrzi objekte
-  // prevProps = prethodne vrednosti this.props-a
+  /*
+    Naredna funkcija se poziva automatski.
+    Potrebno je samo da se implementira u komponenti.
+    - componentDidUpdate(prevProps, prevState, snapshot);
+    - prevProps = prethodne vrednosti this.props-a
+    - prevState = prethodna vrednost statea
+    - this.props i this.state su novi trenutni
+    Svaki put kada se promeni state ili property pozvace se ova f-ja.
+    Nama treba samo kada se promenio betslip,
+    tj. duzina liste betslip koja sadrzi objekte.
+*/
 
   componentDidUpdate(prevProps) {
     if (prevProps.betSlip.length !== this.props.betSlip.length) {

@@ -20,15 +20,13 @@ class SubmittedBetSlipDetails extends React.Component {
           <div>-------------------------------</div>
           {this.props.current_betslip_details.betslip.map((current_betslip) => (
             <>
-              <BetslipInfo current_betslip={current_betslip}/>
-              {/* napraviti komponentu (nema nikakvo lokalno stanje ili share sa storom) getname() itd
-                  ta fja prima objekat koji mu treba i od njega stvara sve sto mu treba
-                  fleg koji ce da prikaze ili ne prikaze remove item
-                  treba remove fja da se prosledi a ako se ne prosledi onda je null, ne treba fleg */}
-              
-              {/* <div>{"index: " + current_betslip.id}</div>
-                  <div>{"bet: " + current_betslip.bet}</div>
-                  <div>-------------------------------</div> */}
+              <BetslipInfo aBet={current_betslip}/>
+              {/* napraviti komponentu (nema nikakvo lokalno stanje ili share sa storom)
+              ova komponenta ce sadrzati funkcije pomocu kojih izvlaci informacije iz objekta
+              kao sto je funkcija getname() itd.
+              ta fja prima objekat koji joj treba i od njega stvara sve sto joj treba
+              fleg koji ce da prikaze ili ne prikaze remove item
+              treba remove fja da se prosledi a ako se ne prosledi onda je null, ne treba fleg */}
             </>
           ))}
         </div>
