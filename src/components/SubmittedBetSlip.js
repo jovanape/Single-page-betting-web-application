@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.css';
+import { formatDate } from './Helper'
 
 class SubmittedBetSlip extends React.Component {
 
   constructor(props) {
     super(props);
   }
-
-  formatDate = (date) => {
-    return Date(date).toString();
-  }
-
 
   render() {
     return ( <>

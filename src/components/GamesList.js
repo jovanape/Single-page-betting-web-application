@@ -21,7 +21,6 @@ class GamesList extends Component {
       </div>
       {
       this.props.games.map((game) => {
-        //return <GameItem bet = {bet}/>
         return <GameItem key={game.id} gameId={game.id} game={game}/>
       })
       }
