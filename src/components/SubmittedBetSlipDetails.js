@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.css';
-import Popup from './Popup';
-
 
 class SubmittedBetSlipDetails extends React.Component {
 
@@ -17,24 +15,29 @@ class SubmittedBetSlipDetails extends React.Component {
   render() {
     return ( <>
 
+      <div>ok!!</div>
+
       <div className="popup-container" id="popup" ref={this.myRef}>
       
       <div className="">
         <div className="details-title">Current submitted betslip details</div>
-        <div>{"amount: " + this.state.current_betslip_details.amount}</div>
-        <div>{"total coef: " + this.state.current_betslip_details.total_coefficient}</div>
-        <div>{"date: " + this.state.current_betslip_details.date}</div>
+        <div>{"amount: " + this.props.current_betslip_details.amount}</div>
+        <div>{"total coef: " + this.props.current_betslip_details.total_coefficient}</div>
+        <div>{"date: " + this.props.current_betslip_details.date}</div>
         <div>-------------------------------</div>
-        {this.state.current_betslip_details.betslip.map((current_betslip) => (
+        {this.props.current_betslip_details.betslip.map((current_betslip) => (
           <>
+
+{/* napraviti komponentu (nema nikakvo lokalno stanje ili share sa storom) getname() itd
+ta fja prima objekat koji mu treba i od njega stvara sve sto mu treba
+fleg koji ce da prikaze ili ne prikaze remove item
+treba remove fja da se prosledi a ako se ne prosledi onda je null, ne treba fleg */}
             <div>{"index: " + current_betslip.id}</div>
             <div>{"bet: " + current_betslip.bet}</div>
             <div>-------------------------------</div>
           </>
         ))} {/* ovo treba da bue posebna f-ja {this.setState({current_betslip_details: null}*/}
-          <div className="description details-button" onClick={() => {this.setState({current_betslip_details: null})}}>
-            back
-          </div>
+          
         </div>
       </div>
 

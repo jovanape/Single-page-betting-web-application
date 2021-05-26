@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.css';
-import Popup from './Popup';
-
 
 class SubmittedBetSlip extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      current_betslip_details: null
-    };  
-  }
-
-  toggleList = (current_betslip) => {
-    this.setState({current_betslip_details: current_betslip})
   }
 
   formatDate = (date) => {
@@ -26,12 +16,12 @@ class SubmittedBetSlip extends React.Component {
   render() {
     return ( <>
       <div>
-        <p className="description">{"Date and time: " + this.formatDate(this.props.submitted_betslip.date)}</p>
+      <p className="description">{"Date and time: " + this.formatDate(this.props.submitted_betslip.date)}</p>
         <p className="description">{"Total coefficient: " + this.props.submitted_betslip.total_coefficient}</p>
         <p className="description">{"amount: " + this.props.submitted_betslip.amount}</p>
         <p className="description">{"Total possible win: " + this.props.submitted_betslip.amount * this.props.submitted_betslip.total_coefficient}</p>
         <div className="">
-          <div className="description details-button" onClick={() => {this.toggleList(this.props.submitted_betslip)}}>
+          <div className="description details-button" onClick={() => {this.props.handler(this.props.submitted_betslip)}}>
             details
           </div>
         </div>

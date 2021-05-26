@@ -18,13 +18,19 @@ class Popup extends React.Component {
 
     this.state = {
       current_betslip_details: null
-    };  
+    };
+
+    this.toggleList = this.toggleList.bind(this);
   }
 
   toggleList = (current_betslip) => {
     this.setState({current_betslip_details: current_betslip})
   }
 
+  /*
+    2-3 komponente imaju ovu fju formatDate -
+    izvaditi je u helper.js i exportovati je gde treba
+  */
   formatDate = (date) => {
     return Date(date).toString();
   }
@@ -61,16 +67,19 @@ class Popup extends React.Component {
       {!this.state.current_betslip_details && <>
         {this.props.submited_betslips.map((submitted_betslip, index) => (
           <div className="container" key={"submitted_betslip" + index}>
-            <SubmittedBetSlip submitted_betslip={submitted_betslip} />
+            {/*<div>ok</div>*/}
+            <SubmittedBetSlip submitted_betslip={submitted_betslip} handler={this.toggleList} />
           </div>
         ))}
       {/*close dugme dodati <span onClick={() => {this.togglePopup(false)}}> x </span>*/}
       </>
     }
 
-    { this.state.current_betslip_details && <>
-{/*submitted_betslip={submitted_betslip}*/}
-        <SubmittedBetSlipDetails />
+    { this.state.current_betslip_details && <> {/*submitted_betslip={submitted_betslip}*/}
+      <div className="description details-button" onClick={() => {this.setState({current_betslip_details: null})}}>
+        back
+      </div>
+      <SubmittedBetSlipDetails current_betslip_details={this.state.current_betslip_details}/>
     </>
     }
     </div>

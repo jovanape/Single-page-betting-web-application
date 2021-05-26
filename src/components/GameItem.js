@@ -46,14 +46,14 @@ class GameItem extends Component {
   // uporediti id svakog tog objekta sa id iz games
   // this.props.game.id
 
-getClass = (elemId) => {
-  for (let bet of this.props.betslip) {
-    if ((bet.id === this.props.game.id) && (elemId === bet.bet)) {
-      return "changeColor";
+  getClass = (elemId) => {
+    for (let bet of this.props.betslip) {
+      if ((bet.id === this.props.game.id) && (elemId === bet.bet)) {
+        return "changeColor";
+      }
     }
+    return "";
   }
-  return "";
-}
 
   render () {
     return <>

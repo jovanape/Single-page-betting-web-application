@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { removeAll, removeBet } from '../actions';
 import {submitBetSlip} from './../actions'
-
 import './BetSlip.css';
+import BetSlipInfo from './BetslipInfo';
 
 const mapStatetoProps = (state, props) => {
   return {
@@ -38,22 +38,6 @@ class BetSlip extends Component {
 
   minimize = (isMinimized) => {
     this.setState({minimized: isMinimized})
-  }
-
-  removeBet = (betId) => {
-    this.props.removeBet(betId);
-  }
-
-  //extract and return gamename (hometeam - awayteam) and coefficient from bets list
-  getGameName = (betId, betType) => {
-    let currentGame = this.props.games.find(x => x.id === betId);
-    console.log(currentGame.home_team);
-    return currentGame.home_team + ' - ' + currentGame.away_team;
-  }
-  // Unhandled Rejection (TypeError): currentGame.bets.find is not a function
-  getCoeficient = (betId, betType) => {
-    let currentGame = this.props.games.find(x => x.id === betId);
-    return currentGame.bets[betType]["odd"];
   }
 
   /*
@@ -100,19 +84,6 @@ class BetSlip extends Component {
       props -> this.props.
     */
 
-  calculateTotalCoeficient = () => {
-    let totalCoeficient = 1;
-    for (let bet of this.props.betSlip) {
-      for (let game of this.props.games) {
-        if (bet.id === game.id) {
-          // game["bets"][bet.bet] = {odd: 1, type: 1}
-          totalCoeficient *= game.bets[bet.bet].odd;
-          break;
-        }
-      }
-    }
-    this.setState({total_coefficient: totalCoeficient});
-  }
 
   saveAmount = () => {
     this.setState({amount: this.myRef.current.value});
@@ -150,6 +121,20 @@ class BetSlip extends Component {
   
   */
 
+  calculateTotalCoeficient = () => {
+    let totalCoeficient = 1;
+    for (let bet of this.props.betSlip) {
+      for (let game of this.props.games) {
+        if (bet.id === game.id) {
+          // game["bets"][bet.bet] = {odd: 1, type: 1}
+          totalCoeficient *= game.bets[bet.bet].odd;
+          break;
+        }
+      }
+    }
+    this.setState({total_coefficient: totalCoeficient});
+  }
+  
   render () {
     return <>
 
@@ -162,18 +147,7 @@ class BetSlip extends Component {
         </div>
 
         {this.props.betSlip.map((aBet) => (
-        <div className="container" key={"betslip" + aBet.id}>
-          <div>
-            <p className="heading-line">{aBet.bet}</p> {/*abet.bet 1,x,2*/}
-            <p className="description">{this.getGameName(aBet.id, aBet.bet)}</p>
-            <p className="description">{aBet.home_team}</p> {/*home away team*/}
-           {/* <p className = "description">{this.calculateTotalCoeficient(aBet.id, aBet.bet)}</p> */}
-          </div>
-          <div className="right-container">
-            <div className="remove" onClick={() => {this.removeBet(aBet.id)}}>x</div>
-            <div className="coef-right">{this.getCoeficient(aBet.id, aBet.bet)}</div> {/*koef*/}
-          </div>
-        </div>
+    <BetSlipInfo aBet={aBet} />
         ))}
         <div className="container">
           <input type="submit" value="Remove all" onClick={this.removeAllClick}/> {/**/}
