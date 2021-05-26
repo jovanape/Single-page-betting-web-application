@@ -13,9 +13,6 @@ class BetSlipInfo extends React.Component {
     super(props);
   }
 
-  removeBet = (betId) => {
-    this.props.removeBet(betId);
-  }
 
   // extract and return gamename (hometeam - awayteam) from bets list
   getGameName = (betId, betType) => {
@@ -39,7 +36,7 @@ class BetSlipInfo extends React.Component {
           <p className="description">{this.props.aBet.home_team}</p> {/*home away team*/}
         </div>
         <div className="right-container">
-          <div className="remove" onClick={() => {this.removeBet(this.props.aBet.id)}}>x</div>
+          <div className="remove" onClick={() => {this.props.removeHandler(this.props.aBet.id)}}>x</div>
           <div className="coef-right">{this.getCoeficient(this.props.aBet.id, this.props.aBet.bet)}</div> {/*koef*/}
         </div>
       </div>

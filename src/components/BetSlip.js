@@ -44,6 +44,10 @@ class BetSlip extends Component {
     this.setState({amount: this.myRef.current.value});
   }
 
+  removeBet = (betId) => {
+    this.props.removeBet(betId);
+  }
+
   /*
     Naredna funkcija se poziva automatski.
     Potrebno je samo da se implementira u komponenti.
@@ -93,7 +97,7 @@ class BetSlip extends Component {
             <span onClick={() => {this.minimize(true)}}>_</span>
           </div>
           {this.props.betSlip.map((aBet) => (
-            <BetSlipInfo aBet={aBet} />
+            <BetSlipInfo aBet={aBet} removeHandler={this.removeBet}/>
           ))}
           <div className="container">
             <input type="submit" value="Remove all" onClick={this.removeAllClick}/>
