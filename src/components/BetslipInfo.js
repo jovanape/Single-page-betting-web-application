@@ -45,3 +45,4 @@ class BetSlipInfo extends React.Component {
 }
 
 export default connect (mapStatetoProps, null)(BetSlipInfo);
+

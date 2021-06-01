@@ -29,3 +29,5 @@ class SubmittedBetSlip extends React.Component {
 
 
   export default connect (null, null)(SubmittedBetSlip);
+
+  

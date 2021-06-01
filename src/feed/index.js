@@ -202,11 +202,11 @@ const Feed = {
       "league": 1,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "2": {
@@ -299,7 +299,7 @@ const Feed = {
       "league": 5,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 5,
           "type": 1
         },
         "X": {
@@ -307,7 +307,7 @@ const Feed = {
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "0-1": {
@@ -400,11 +400,11 @@ const Feed = {
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "0-1": {
@@ -493,7 +493,7 @@ const Feed = {
       "league": 2,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "X": {
@@ -501,7 +501,7 @@ const Feed = {
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 4,
           "type": 1
         },
         "0-1": {
@@ -594,11 +594,11 @@ const Feed = {
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 5,
           "type": 1
         },
         "0-1": {
@@ -687,11 +687,11 @@ const Feed = {
       "league": 4,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 4,
           "type": 1
         },
         "2": {
@@ -788,11 +788,11 @@ const Feed = {
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "0-1": {
@@ -881,15 +881,15 @@ const Feed = {
       "league": 2,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 4,
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 5,
           "type": 1
         },
         "0-1": {
@@ -982,7 +982,7 @@ const Feed = {
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 4,
           "type": 1
         },
         "2": {
@@ -1075,11 +1075,11 @@ const Feed = {
       "league": 1,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 3,
           "type": 1
         },
         "2": {
@@ -1176,7 +1176,7 @@ const Feed = {
           "type": 1
         },
         "X": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "2": {
@@ -1269,7 +1269,7 @@ const Feed = {
       "league": 1,
       "bets": {
         "1": {
-          "odd": 1,
+          "odd": 4,
           "type": 1
         },
         "X": {
@@ -1277,7 +1277,7 @@ const Feed = {
           "type": 1
         },
         "2": {
-          "odd": 1,
+          "odd": 2,
           "type": 1
         },
         "0-1": {

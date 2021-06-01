@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStatetoProps = (state, ownProps) =>
 {
   return {
-    betslip: state.betslip
+    betslip: state.betslip,
+    games: state.games
   };
 };
 
@@ -20,6 +21,11 @@ class GameItem extends Component {
 
   constructor(props) {
     super(props)
+  }
+
+
+  showAllBets = () => {
+    
   }
 
   addBet = (sBet) => {
@@ -46,6 +52,8 @@ class GameItem extends Component {
     return "";
   }
 
+  /* GameItem ~ Pop komponenta */
+
   render () {
     return <>
       <div className="div-table-row">
@@ -53,7 +61,8 @@ class GameItem extends Component {
         <div className={"div-cell" + " " + this.getClass("1")} id="1" onClick = {() => {this.addBet("1")}}> {this.props.game.bets["1"].odd} </div>
         <div className={"div-cell" + " " + this.getClass("X")} id="x" onClick = {() => {this.addBet("X")}}> {this.props.game.bets["X"].odd} </div>
         <div className={"div-cell" + " " + this.getClass("2")} id="2" onClick = {() => {this.addBet("2")}}> {this.props.game.bets["2"].odd} </div>
-      </div>
+        <div className="description details-button" onClick = {() => {this.props.handler(this.props.gameBets)}}>all bets</div>
+      </div> {/*handler={this.toggleList}*/} {/* kada se klikne treba da se otvori novi view */}
     </>;
   }
 }

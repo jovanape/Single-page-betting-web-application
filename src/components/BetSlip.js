@@ -126,7 +126,7 @@ class BetSlip extends Component {
           </div>
         }
       </div>
-    </>;
+    </>
   }
 }
 
